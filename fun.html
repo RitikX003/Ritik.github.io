@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Elhama Experience</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            border: 2px solid #333;
+            padding: 3rem;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #1a1a1a, #000000);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(to right, #ff00cc, #3333ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .subtext {
+            font-size: 1.5rem;
+            color: #888;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .shrug-emoji {
+            font-size: 6rem;
+            margin: 20px 0;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .btn {
+            background: white;
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: transform 0.2s, background 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #ff00cc;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .btn:active {
+            transform: scale(0.9);
+        }
+
+        /* The "I don't care" attitude animations */
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff00cc; }
+            to { text-shadow: 0 0 30px #3333ff; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Hidden message logic */
+        #care-meter {
+            margin-top: 20px;
+            color: #444;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>I AM ELHAMA</h1>
+        <div class="shrug-emoji">¯\_(ツ)_/¯</div>
+        <p class="subtext">...and I don't care.</p>
+        
+        <button class="btn" onclick="complain()">Click to complain to Elhama</button>
+        
+        <div id="care-meter">Care Level: 0.00000%</div>
+    </div>
+
+    <script>
+        function complain() {
+            const responses = [
+                "Interesting. Still don't care.",
+                "I'd read that, but I'm busy not caring.",
+                "Is that so? 🥱",
+                "Error 404: Care not found.",
+                "Cool story. Anyway...",
+                "Wait, did you say something? I wasn't listening."
+            ];
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            alert(randomResponse);
+        }
+    </script>
+
+</body>
+</html>

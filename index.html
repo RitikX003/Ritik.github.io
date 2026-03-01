@@ -23,6 +23,7 @@
             --bg-card: #FFFFFF;
             --bg-icon-wrap: #EEF2FF;
             --bg-steps: #FFFFFF;
+            --bg-pro-section: #EEF2FF; /* Slight tint for Pro section */
             --bg-footer: #020617; /* Slate 950 */
 
             --text-main: #0F172A; /* Slate 900 */
@@ -43,6 +44,7 @@
             --bg-card: #1E293B; /* Slate 800 */
             --bg-icon-wrap: #374151; /* Slate 700 */
             --bg-steps: #0F172A;
+            --bg-pro-section: #0B1120; /* Darker tint for Pro section */
             
             --text-main: #F1F5F9; /* Slate 100 */
             --text-gray: #94A3B8; /* Slate 400 */
@@ -91,11 +93,10 @@
             text-decoration: none;
         }
 
-        /* CUSTOM LOGO CLASSES */
         .brand-logo-img {
             width: 36px;
             height: 36px;
-            border-radius: 50%; /* Makes the square image a perfect circle */
+            border-radius: 50%; 
             object-fit: cover;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
@@ -115,45 +116,17 @@
 
         .nav-links a:hover { color: var(--primary); }
 
-        /* Dark Mode Switch Styles */
-        .theme-switch-wrapper {
-            display: flex;
-            align-items: center;
-        }
-        .theme-switch {
-            display: inline-block;
-            height: 28px;
-            position: relative;
-            width: 50px;
-        }
+        .theme-switch-wrapper { display: flex; align-items: center; }
+        .theme-switch { display: inline-block; height: 28px; position: relative; width: 50px; }
         .theme-switch input { display:none; }
         .slider {
-            background-color: #ccc;
-            bottom: 0;
-            cursor: pointer;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: .4s;
-            border-radius: 34px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5px;
-            font-size: 12px;
+            background-color: #ccc; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0;
+            transition: .4s; border-radius: 34px; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5px; font-size: 12px;
         }
         .slider::before {
-            background-color: white;
-            bottom: 3px;
-            content: "";
-            height: 22px;
-            left: 3px;
-            position: absolute;
-            transition: .4s;
-            width: 22px;
-            border-radius: 50%;
-            z-index: 2;
+            background-color: white; bottom: 3px; content: ""; height: 22px; left: 3px;
+            position: absolute; transition: .4s; width: 22px; border-radius: 50%; z-index: 2;
         }
         input:checked + .slider { background-color: var(--primary); }
         input:checked + .slider::before { transform: translateX(22px); }
@@ -164,173 +137,67 @@
 
         /* 🚀 HERO SECTION 🚀 */
         .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 80px 5%;
-            background: var(--bg-hero);
-            min-height: 80vh;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 80px 5%; background: var(--bg-hero); min-height: 80vh;
         }
 
         .hero-content { flex: 1; max-width: 600px; }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: var(--text-main);
-        }
-
-        .hero h1 span {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            margin-bottom: 32px;
-        }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: var(--text-main); }
+        .hero h1 span { background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 32px; }
 
         .download-btn {
-            display: inline-flex;
-            align-items: center;
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: var(--shadow-lg);
+            display: inline-flex; align-items: center; background-color: var(--primary); color: var(--white);
+            padding: 16px 32px; border-radius: 50px; font-size: 1.1rem; font-weight: 700; text-decoration: none; box-shadow: var(--shadow-lg);
         }
-
-        .download-btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4);
-        }
-
+        .download-btn:hover { background-color: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4); }
         .download-btn i { margin-right: 12px; font-size: 1.4rem; }
 
         .hero-visual { flex: 1; display: flex; justify-content: center; }
 
-        /* simulated Phone */
         .phone-mockup {
-            width: 300px;
-            height: 600px;
-            background: #0F172A; /* Keep phone dark */
-            border-radius: 40px;
-            border: 12px solid #1E293B;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            width: 300px; height: 600px; background: #0F172A; border-radius: 40px; border: 12px solid #1E293B;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; color: white; position: relative; overflow: hidden;
         }
-
         .phone-mockup::before {
             content: ''; position: absolute; top: 0; width: 120px; height: 25px;
             background: #1E293B; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
         }
+        .mockup-logo-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); animation: float 3s ease-in-out infinite; }
 
-        /* CUSTOM HERO LOGO */
-        .mockup-logo-img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
         /* 🚶‍♂️ HOW IT WORKS 🚶‍♂️ */
-        .steps-section {
-            padding: 80px 5%;
-            background: var(--bg-steps);
-            text-align: center;
-        }
+        .steps-section { padding: 80px 5%; background: var(--bg-steps); text-align: center; }
+        .section-title { font-size: 2.5rem; margin-bottom: 15px; font-weight: 800; color: var(--text-main); }
+        .section-subtitle { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        .section-title { font-size: 2.5rem; margin-bottom: 50px; font-weight: 800; color: var(--text-main); }
-
-        .steps-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
+        .steps-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
         .step-card { flex: 1; min-width: 250px; max-width: 300px; padding: 30px 20px; }
-
-        .step-number {
-            width: 50px; height: 50px; background: var(--primary); color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px;
-        }
-
+        .step-number { width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px; }
         .step-card h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--text-main); }
         .step-card p { color: var(--text-gray); }
 
-        /* ✨ FEATURES GRID & ANIMATIONS ✨ */
-        .features {
-            padding: 80px 5%;
-            background: var(--bg-body);
-            text-align: center;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        /* ✨ FEATURES GRID ✨ */
+        .features { padding: 80px 5%; background: var(--bg-body); text-align: center; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        
         .feature-card {
-            background: var(--bg-card);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-md);
-            text-align: left;
-            position: relative;
-            overflow: hidden;
+            background: var(--bg-card); padding: 40px 30px; border-radius: 20px; box-shadow: var(--shadow-md);
+            text-align: left; position: relative; overflow: hidden;
         }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
 
         .feature-icon-wrapper {
-            width: 60px;
-            height: 60px;
-            background: var(--bg-icon-wrap);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
+            width: 60px; height: 60px; background: var(--bg-icon-wrap); border-radius: 15px;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 20px; position: relative; z-index: 1;
         }
-
         .feature-icon { font-size: 1.8rem; color: var(--primary); }
         .feature-title { font-weight: 700; font-size: 1.25rem; margin-bottom: 12px; color: var(--text-main); }
         .feature-desc { color: var(--text-gray); }
 
-        /* 🟢 SPECIFIC CARD ANIMATIONS ON HOVER 🟢 */
+        /* General Features Animations */
         .card-eta:hover .feature-icon-wrapper { animation: trafficLight 2.5s infinite; }
         @keyframes trafficLight {
             0% { background: var(--bg-icon-wrap); box-shadow: none; }
@@ -343,76 +210,76 @@
         }
         .card-eta:hover .feature-icon { color: var(--text-main); }
 
-        .card-voice .feature-icon-wrapper::after {
-            content: ''; position: absolute; width: 100%; height: 100%; border-radius: 15px;
-            background: var(--primary); opacity: 0; z-index: -1;
-        }
+        .card-voice .feature-icon-wrapper::after { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 15px; background: var(--primary); opacity: 0; z-index: -1; }
         .card-voice:hover .feature-icon-wrapper::after { animation: voicePulse 1.5s infinite; }
-        @keyframes voicePulse {
-            0% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.6); }
-        }
+        @keyframes voicePulse { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 0; transform: scale(1.6); } }
         .card-voice:hover .feature-icon { color: var(--primary); }
 
         .card-alert:hover { animation: vibrate 0.3s linear infinite; }
-        @keyframes vibrate {
-            0% { transform: translate(0, 0) translateY(-5px); }
-            25% { transform: translate(2px, 2px) translateY(-5px); }
-            50% { transform: translate(0, 0) translateY(-5px); }
-            75% { transform: translate(-2px, -2px) translateY(-5px); }
-            100% { transform: translate(0, 0) translateY(-5px); }
-        }
+        @keyframes vibrate { 0% { transform: translate(0, 0) translateY(-5px); } 25% { transform: translate(2px, 2px) translateY(-5px); } 50% { transform: translate(0, 0) translateY(-5px); } 75% { transform: translate(-2px, -2px) translateY(-5px); } 100% { transform: translate(0, 0) translateY(-5px); } }
         .card-alert:hover .feature-icon { color: #DC2626; }
 
-        .card-battery:hover .feature-icon-wrapper {
-            background: #DCFCE7; box-shadow: 0 0 20px rgba(22, 163, 74, 0.3);
+        .card-battery:hover .feature-icon-wrapper { background: #DCFCE7; box-shadow: 0 0 20px rgba(22, 163, 74, 0.3); }
+        .card-battery:hover .feature-icon { color: #16A34A; transform: scale(1.2); }
+
+        /* 💎 PRO FEATURES SECTION (AD-SUPPORTED) 💎 */
+        .pro-features {
+            padding: 80px 5%;
+            background: var(--bg-pro-section);
+            text-align: center;
         }
-        .card-battery:hover .feature-icon {
-            color: #16A34A; transform: scale(1.2);
+        
+        /* Pro Badge inside cards */
+        .pro-badge {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(217, 119, 6, 0.3);
+            text-transform: uppercase;
+        }
+
+        /* Pro Feature Hover Animations */
+        /* Reminder Ring */
+        .card-reminder:hover .feature-icon { animation: ringBell 0.5s ease-in-out infinite alternate; color: #F59E0B; }
+        @keyframes ringBell {
+            0% { transform: rotate(-15deg); }
+            100% { transform: rotate(15deg); }
+        }
+
+        /* Gentle Feather Float */
+        .card-gentle:hover .feature-icon { animation: gentleFloat 2s ease-in-out infinite; color: #06B6D4; }
+        @keyframes gentleFloat {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-8px); opacity: 0.7; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* History Spin */
+        .card-history:hover .feature-icon { animation: timeTravel 1.5s linear infinite; color: #8B5CF6; }
+        @keyframes timeTravel {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
         }
 
         /* 📢 CTA SECTION 📢 */
-        .cta-section {
-            background: #0F172A;
-            color: white;
-            text-align: center;
-            padding: 80px 5%;
-        }
-
+        .cta-section { background: #0F172A; color: white; text-align: center; padding: 80px 5%; }
         .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
-
-        .cta-section p {
-            font-size: 1.2rem; color: #94A3B8; margin-bottom: 40px;
-            max-width: 600px; margin-left: auto; margin-right: auto;
-        }
+        .cta-section p { font-size: 1.2rem; color: #94A3B8; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
         /* 🦶 FOOTER 🦶 */
-        footer {
-            background-color: var(--bg-footer);
-            color: var(--text-footer);
-            padding: 40px 5%;
-            text-align: center;
-            font-size: 0.95rem;
-        }
-
-        .footer-logo {
-            justify-content: center; color: white; margin-bottom: 20px;
-            font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 12px;
-        }
-
-        .footer-links {
-            margin: 20px 0; display: flex; justify-content: center;
-            gap: 24px; flex-wrap: wrap;
-        }
-
+        footer { background-color: var(--bg-footer); color: var(--text-footer); padding: 40px 5%; text-align: center; font-size: 0.95rem; }
+        .footer-logo { justify-content: center; color: white; margin-bottom: 20px; font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 12px; }
+        .footer-links { margin: 20px 0; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
         .footer-links a { color: var(--text-footer); text-decoration: none; }
         .footer-links a:hover { color: white; }
-
-        .ads-txt-link {
-            display: inline-block; margin-top: 10px; font-size: 0.85rem;
-            border: 1px solid #334155; padding: 6px 12px; border-radius: 6px;
-            text-decoration: none; color: var(--text-footer);
-        }
+        .ads-txt-link { display: inline-block; margin-top: 10px; font-size: 0.85rem; border: 1px solid #334155; padding: 6px 12px; border-radius: 6px; text-decoration: none; color: var(--text-footer); }
 
         /* 📱 MOBILE ADJUSTMENTS 📱 */
         @media (max-width: 900px) {
@@ -421,7 +288,6 @@
             .hero-content { margin-bottom: 50px; }
             .nav-links { display: none; }
         }
-
         @media (max-width: 600px) {
             .hero h1 { font-size: 2.2rem; }
             .section-title { font-size: 2rem; }
@@ -440,6 +306,7 @@
             <div class="nav-links">
                 <a href="#how-it-works">How it Works</a>
                 <a href="#features">Features</a>
+                <a href="#pro-features">Pro Features</a>
             </div>
             <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="checkbox">
@@ -473,6 +340,7 @@
 
     <section id="how-it-works" class="steps-section">
         <h2 class="section-title">How it works</h2>
+        <div class="section-subtitle">Set up your commute alarm in 3 simple steps.</div>
         <div class="steps-container">
             <div class="step-card">
                 <div class="step-number">1</div>
@@ -526,6 +394,42 @@
                 </div>
                 <h3 class="feature-title">Battery Optimized</h3>
                 <p class="feature-desc">By syncing GPS pings with your current travel speed, we minimize battery drain so you have juice left when you arrive.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="pro-features" class="pro-features">
+        <h2 class="section-title">Premium tools. Zero cost.</h2>
+        <div class="section-subtitle">Unlock these powerful pro features permanently for a specific trip just by watching a quick, one-time rewarded ad. No subscriptions required!</div>
+        
+        <div class="features-grid" style="margin-top: 40px;">
+            
+            <div class="feature-card card-reminder">
+                <div class="pro-badge"><i class="fas fa-play" style="font-size:0.6rem; margin-right:4px;"></i> Free via Ad</div>
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-bell feature-icon"></i>
+                </div>
+                <h3 class="feature-title">Smart Reminders</h3>
+                <p class="feature-desc">Never forget to set your alarm again. Get an intelligent prompt to activate Nap Alarm when you leave a saved location like the office.</p>
+            </div>
+
+            <div class="feature-card card-gentle">
+                <div class="pro-badge"><i class="fas fa-play" style="font-size:0.6rem; margin-right:4px;"></i> Free via Ad</div>
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-feather-pointed feature-icon"></i>
+                </div>
+                <h3 class="feature-title">Gentle Wake</h3>
+                <p class="feature-desc">Avoid the panic of a sudden loud noise. Gentle Wake smoothly and gradually increases the alarm volume so you wake up peacefully.</p>
+            </div>
+
+            <div class="feature-card card-history">
+                <div class="pro-badge"><i class="fas fa-play" style="font-size:0.6rem; margin-right:4px;"></i> Free via Ad</div>
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-clock-rotate-left feature-icon"></i>
+                </div>
+                <h3 class="feature-title">Recent History</h3>
+                <p class="feature-desc">Tired of typing the same destination? Unlock your recent trip history for instant, one-tap access to your daily commute routes.</p>
             </div>
 
         </div>

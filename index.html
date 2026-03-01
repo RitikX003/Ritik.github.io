@@ -210,10 +210,23 @@
         }
         .card-eta:hover .feature-icon { color: var(--text-main); }
 
+        .card-distance:hover .feature-icon { animation: pinBounce 0.6s ease-in-out infinite alternate; color: #EF4444; }
+        @keyframes pinBounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
         .card-voice .feature-icon-wrapper::after { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 15px; background: var(--primary); opacity: 0; z-index: -1; }
         .card-voice:hover .feature-icon-wrapper::after { animation: voicePulse 1.5s infinite; }
         @keyframes voicePulse { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 0; transform: scale(1.6); } }
         .card-voice:hover .feature-icon { color: var(--primary); }
+
+        .card-audio:hover .feature-icon { animation: audioPulse 1s ease-in-out infinite; color: var(--secondary); }
+        @keyframes audioPulse {
+            0% { transform: scale(1); text-shadow: 0 0 0 rgba(139, 92, 246, 0); }
+            50% { transform: scale(1.15); text-shadow: 0 0 15px rgba(139, 92, 246, 0.6); }
+            100% { transform: scale(1); text-shadow: 0 0 0 rgba(139, 92, 246, 0); }
+        }
 
         .card-alert:hover { animation: vibrate 0.3s linear infinite; }
         @keyframes vibrate { 0% { transform: translate(0, 0) translateY(-5px); } 25% { transform: translate(2px, 2px) translateY(-5px); } 50% { transform: translate(0, 0) translateY(-5px); } 75% { transform: translate(-2px, -2px) translateY(-5px); } 100% { transform: translate(0, 0) translateY(-5px); } }
@@ -223,50 +236,23 @@
         .card-battery:hover .feature-icon { color: #16A34A; transform: scale(1.2); }
 
         /* 💎 PRO FEATURES SECTION (AD-SUPPORTED) 💎 */
-        .pro-features {
-            padding: 80px 5%;
-            background: var(--bg-pro-section);
-            text-align: center;
-        }
+        .pro-features { padding: 80px 5%; background: var(--bg-pro-section); text-align: center; }
         
-        /* Pro Badge inside cards */
         .pro-badge {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 4px rgba(217, 119, 6, 0.3);
-            text-transform: uppercase;
+            position: absolute; top: 24px; right: 24px;
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color: white;
+            padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800;
+            letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(217, 119, 6, 0.3); text-transform: uppercase;
         }
 
-        /* Pro Feature Hover Animations */
-        /* Reminder Ring */
         .card-reminder:hover .feature-icon { animation: ringBell 0.5s ease-in-out infinite alternate; color: #F59E0B; }
-        @keyframes ringBell {
-            0% { transform: rotate(-15deg); }
-            100% { transform: rotate(15deg); }
-        }
+        @keyframes ringBell { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
 
-        /* Gentle Feather Float */
         .card-gentle:hover .feature-icon { animation: gentleFloat 2s ease-in-out infinite; color: #06B6D4; }
-        @keyframes gentleFloat {
-            0% { transform: translateY(0); opacity: 1; }
-            50% { transform: translateY(-8px); opacity: 0.7; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
+        @keyframes gentleFloat { 0% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-8px); opacity: 0.7; } 100% { transform: translateY(0); opacity: 1; } }
 
-        /* History Spin */
         .card-history:hover .feature-icon { animation: timeTravel 1.5s linear infinite; color: #8B5CF6; }
-        @keyframes timeTravel {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
-        }
+        @keyframes timeTravel { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
 
         /* 📢 CTA SECTION 📢 */
         .cta-section { background: #0F172A; color: white; text-align: center; padding: 80px 5%; }
@@ -372,12 +358,28 @@
                 <p class="feature-desc">Our default Time-Based mode adapts to live traffic and transit delays. We recalculate your arrival time so you wake up right on schedule.</p>
             </div>
 
+            <div class="feature-card card-distance">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-map-location-dot feature-icon"></i>
+                </div>
+                <h3 class="feature-title">Distance-Based Alarms</h3>
+                <p class="feature-desc">Prefer predictable alerts? Switch to Distance Mode to trigger your alarm exactly 2 kilometers before reaching your destination.</p>
+            </div>
+
             <div class="feature-card card-voice">
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-microphone feature-icon"></i>
                 </div>
                 <h3 class="feature-title">Voice Commands</h3>
                 <p class="feature-desc">Hands full? Just say "Hey Google, set a Nap Alarm for Home" and Google Assistant will instantly configure your trip.</p>
+            </div>
+
+            <div class="feature-card card-audio">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-headphones-simple feature-icon"></i>
+                </div>
+                <h3 class="feature-title">Smart Audio Routing</h3>
+                <p class="feature-desc">Wearing earphones? The alarm routes directly through them so you don't disturb others. No earphones? It plays loud and clear on the speaker.</p>
             </div>
 
             <div class="feature-card card-alert">

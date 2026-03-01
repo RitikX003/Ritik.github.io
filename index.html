@@ -6,209 +6,475 @@
     <title>Nap Alarm - Never Miss Your Stop</title>
     <meta name="description" content="Location-based alarm clock for commuters. Sleep peacefully on the bus or train, we will wake you up when you arrive.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
             --primary: #4F46E5; /* Indigo */
-            --dark: #1F2937;
-            --light: #F3F4F6;
+            --primary-hover: #4338CA;
+            --secondary: #8B5CF6; /* Purple */
+            --dark: #0F172A; /* Slate 900 */
+            --text-gray: #475569; /* Slate 600 */
+            --light: #F8FAFC; /* Slate 50 */
             --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--white);
+            background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
         }
 
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: var(--white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-left: 24px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-            color: var(--white);
-            padding: 80px 20px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+            min-height: 80vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
             font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 32px;
         }
 
-        .app-icon {
-            width: 100px;
-            height: 100px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 24px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        /* Download Button */
         .download-btn {
             display: inline-flex;
             align-items: center;
-            background-color: var(--white);
-            color: var(--primary);
-            padding: 15px 30px;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 16px 32px;
             border-radius: 50px;
+            font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+            transition: all 0.3s ease;
         }
 
         .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4);
         }
 
         .download-btn i {
-            margin-right: 10px;
-            font-size: 1.2rem;
+            margin-right: 12px;
+            font-size: 1.4rem;
+        }
+
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Simulated Phone Mockup */
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: var(--dark);
+            border-radius: 40px;
+            border: 12px solid #1E293B;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 120px;
+            height: 25px;
+            background: #1E293B;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        .mockup-icon {
+            font-size: 80px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.5));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* How it Works */
+        .steps-section {
+            padding: 80px 5%;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            font-weight: 800;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .step-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            padding: 30px 20px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .step-card p {
+            color: var(--text-gray);
         }
 
         /* Features Section */
         .features {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
+            padding: 80px 5%;
+            background: var(--light);
             text-align: center;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .feature-card {
-            padding: 30px;
-            background: var(--light);
-            border-radius: 16px;
-            transition: 0.3s;
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: left;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background: #EEF2FF;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
         }
 
         .feature-icon {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
-            margin-bottom: 15px;
         }
 
         .feature-title {
             font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .feature-desc {
+            color: var(--text-gray);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 80px 5%;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #94A3B8;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Footer */
         footer {
-            background-color: var(--dark);
-            color: #9CA3AF;
-            padding: 40px 20px;
+            background-color: #020617; /* Slate 950 */
+            color: #64748B;
+            padding: 40px 5%;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
-        footer a {
-            color: var(--white);
+        .footer-links {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #94A3B8;
             text-decoration: none;
-            margin: 0 10px;
+            transition: color 0.2s;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .footer-links a:hover {
+            color: white;
         }
 
         .ads-txt-link {
             display: inline-block;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            opacity: 0.5;
-            border: 1px solid #374151;
-            padding: 5px 10px;
-            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            border: 1px solid #334155;
+            padding: 6px 12px;
+            border-radius: 6px;
         }
 
         /* Mobile Adjustments */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 40px;
+            }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-content { margin-bottom: 50px; }
+            .nav-links { display: none; } /* Hide on small screens for simplicity */
+        }
+
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 2rem; }
+            .phone-mockup { width: 260px; height: 520px; }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="app-icon">
-            <i class="fas fa-map-marker-alt"></i>
+    <nav>
+        <div class="logo">
+            <i class="fas fa-map-marker-alt"></i> Nap Alarm
         </div>
-        
-        <h1>Nap Alarm</h1>
-        <p>Sleep peacefully on your commute. We'll wake you up precisely when you arrive.</p>
-        
-        <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm" class="download-btn">
-            <i class="fab fa-google-play"></i> Get it on Google Play
-        </a>
+        <div class="nav-links">
+            <a href="#how-it-works">How it Works</a>
+            <a href="#features">Features</a>
+            <a href="mailto:support@napalarm.com">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Never miss your stop <span>again.</span></h1>
+            <p>The ultimate location-based alarm clock for commuters. Sleep peacefully on the bus or train, and let your GPS wake you up exactly when you arrive.</p>
+            
+            <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm" class="download-btn">
+                <i class="fab fa-google-play"></i> Get it on Google Play
+            </a>
+        </div>
+        <div class="hero-visual">
+            <div class="phone-mockup">
+                <i class="fas fa-bed mockup-icon"></i>
+                <h3 style="font-size: 24px; font-weight: 800;">Background</h3>
+                <h3 style="font-size: 24px; font-weight: 800; color: #8B5CF6;">Active</h3>
+            </div>
+        </div>
     </header>
 
-    <section class="features">
-        <h2>Why commuters love us</h2>
+    <section id="how-it-works" class="steps-section">
+        <h2 class="section-title">How it works</h2>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Set Destination</h3>
+                <p>Search for your train station, bus stop, or save your Home/Work for 1-tap access.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Choose a Buffer</h3>
+                <p>Want to wake up 5 minutes before arriving? Or 2 kilometers away? Set your preference.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Go to Sleep</h3>
+                <p>Lock your phone and rest. We dynamically track your ETA and wake you up reliably.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2 class="section-title">Engineered for Commuters</h2>
         <div class="features-grid">
             
             <div class="feature-card">
-                <i class="fas fa-location-arrow feature-icon"></i>
-                <div class="feature-title">Location Based</div>
-                <p>Uses precise GPS technology to trigger alarms based on location, not time.</p>
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-traffic-light feature-icon"></i>
+                </div>
+                <h3 class="feature-title">Smart ETA Tracking</h3>
+                <p class="feature-desc">Our default Time-Based mode adapts to live traffic and transit delays. We recalculate your arrival time so you wake up right on schedule.</p>
             </div>
 
             <div class="feature-card">
-                <i class="fas fa-battery-half feature-icon"></i>
-                <div class="feature-title">Background Safe</div>
-                <p>Works perfectly even when your screen is off or you are using other apps.</p>
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-microphone feature-icon"></i>
+                </div>
+                <h3 class="feature-title">Voice Commands</h3>
+                <p class="feature-desc">Hands full? Just say "Hey Google, set a Nap Alarm for Home" and Google Assistant will instantly configure your trip.</p>
             </div>
 
             <div class="feature-card">
-                <i class="fas fa-moon feature-icon"></i>
-                <div class="feature-title">Dark Mode</div>
-                <p>Easy on the eyes during night travel. Includes custom map styles.</p>
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-mobile-screen-button feature-icon"></i>
+                </div>
+                <h3 class="feature-title">Unstoppable Alerts</h3>
+                <p class="feature-desc">Built to bypass modern Android battery restrictions. Our alarm punches right through your lock screen to guarantee you wake up.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-battery-half feature-icon"></i>
+                </div>
+                <h3 class="feature-title">Battery Optimized</h3>
+                <p class="feature-desc">By syncing GPS pings with your current travel speed, we minimize battery drain so you have juice left when you arrive.</p>
             </div>
 
         </div>
     </section>
 
+    <section class="cta-section">
+        <h2>Ready for a stress-free commute?</h2>
+        <p>Join the open beta today and turn your daily transit into an opportunity to rest.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm" class="download-btn" style="background: white; color: var(--dark); box-shadow: none;">
+            <i class="fab fa-google-play" style="color: var(--primary);"></i> Download Now
+        </a>
+    </section>
+
     <footer>
+        <div class="logo" style="justify-content: center; color: white; margin-bottom: 20px;">
+            <i class="fas fa-map-marker-alt"></i> Nap Alarm
+        </div>
         <p>&copy; 2026 Ritik Jain. All rights reserved.</p>
-        <br>
         
-        <a href="privacy_policy.html">Privacy Policy</a>
-        <a href="mailto:support@napalarm.com">Support</a>
+        <div class="footer-links">
+            <a href="privacy_policy.html">Privacy Policy</a>
+            <a href="mailto:support@napalarm.com">Support</a>
+            <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm">Google Play Store</a>
+        </div>
         
-        <br>
-        
-        <a href="app-ads.txt" class="ads-txt-link">Ads Ownership (app-ads.txt)</a>
+        <a href="app-ads.txt" class="ads-txt-link"><i class="fas fa-shield-alt"></i> Ads Ownership (app-ads.txt)</a>
     </footer>
 
 </body>

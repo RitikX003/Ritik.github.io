@@ -87,8 +87,17 @@
             color: var(--primary);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
+        }
+
+        /* CUSTOM LOGO CLASSES */
+        .brand-logo-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%; /* Makes the square image a perfect circle */
+            object-fit: cover;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .nav-right {
@@ -152,7 +161,6 @@
         .slider .fa-moon { color: #F1F5F9; opacity: 0; transition: opacity 0.4s;}
         input:checked + .slider .fa-sun { opacity: 0; }
         input:checked + .slider .fa-moon { opacity: 1; }
-
 
         /* 🚀 HERO SECTION 🚀 */
         .hero {
@@ -231,9 +239,14 @@
             background: #1E293B; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
         }
 
-        .mockup-icon {
-            font-size: 80px; color: var(--primary); margin-bottom: 20px;
-            filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.5));
+        /* CUSTOM HERO LOGO */
+        .mockup-logo-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             animation: float 3s ease-in-out infinite;
         }
 
@@ -295,7 +308,6 @@
             overflow: hidden;
         }
 
-        /* General Hover elevation for all cards */
         .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
@@ -315,53 +327,34 @@
         }
 
         .feature-icon { font-size: 1.8rem; color: var(--primary); }
-
         .feature-title { font-weight: 700; font-size: 1.25rem; margin-bottom: 12px; color: var(--text-main); }
         .feature-desc { color: var(--text-gray); }
 
         /* 🟢 SPECIFIC CARD ANIMATIONS ON HOVER 🟢 */
-
-        /* 1. Smart ETA (Traffic Light Cycle) */
-        .card-eta:hover .feature-icon-wrapper {
-            animation: trafficLight 2.5s infinite;
-        }
+        .card-eta:hover .feature-icon-wrapper { animation: trafficLight 2.5s infinite; }
         @keyframes trafficLight {
             0% { background: var(--bg-icon-wrap); box-shadow: none; }
-            20% { background: #DCFCE7; box-shadow: 0 0 15px #16A34A; } /* Green */
+            20% { background: #DCFCE7; box-shadow: 0 0 15px #16A34A; }
             40% { background: #DCFCE7; }
-            50% { background: #FEF9C3; box-shadow: 0 0 15px #CA8A04; } /* Yellow */
+            50% { background: #FEF9C3; box-shadow: 0 0 15px #CA8A04; }
             70% { background: #FEF9C3; }
-            80% { background: #FEE2E2; box-shadow: 0 0 15px #DC2626; } /* Red */
+            80% { background: #FEE2E2; box-shadow: 0 0 15px #DC2626; }
             100% { background: var(--bg-icon-wrap); box-shadow: none; }
         }
         .card-eta:hover .feature-icon { color: var(--text-main); }
 
-
-        /* 2. Voice Commands (Google Assistant Pulse) */
         .card-voice .feature-icon-wrapper::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 15px;
-            background: var(--primary);
-            opacity: 0;
-            z-index: -1;
+            content: ''; position: absolute; width: 100%; height: 100%; border-radius: 15px;
+            background: var(--primary); opacity: 0; z-index: -1;
         }
-        .card-voice:hover .feature-icon-wrapper::after {
-            animation: voicePulse 1.5s infinite;
-        }
+        .card-voice:hover .feature-icon-wrapper::after { animation: voicePulse 1.5s infinite; }
         @keyframes voicePulse {
             0% { opacity: 0.6; transform: scale(1); }
             100% { opacity: 0; transform: scale(1.6); }
         }
         .card-voice:hover .feature-icon { color: var(--primary); }
 
-
-        /* 3. Unstoppable Alerts (URGENT Shake/Vibrate) */
-        .card-alert:hover {
-            animation: vibrate 0.3s linear infinite;
-        }
+        .card-alert:hover { animation: vibrate 0.3s linear infinite; }
         @keyframes vibrate {
             0% { transform: translate(0, 0) translateY(-5px); }
             25% { transform: translate(2px, 2px) translateY(-5px); }
@@ -369,17 +362,13 @@
             75% { transform: translate(-2px, -2px) translateY(-5px); }
             100% { transform: translate(0, 0) translateY(-5px); }
         }
-        .card-alert:hover .feature-icon { color: #DC2626; } /* Red icon on hover */
+        .card-alert:hover .feature-icon { color: #DC2626; }
 
-
-        /* 4. Battery Optimized (Efficient Glow) */
         .card-battery:hover .feature-icon-wrapper {
-            background: #DCFCE7; /* Light green wrap */
-            box-shadow: 0 0 20px rgba(22, 163, 74, 0.3);
+            background: #DCFCE7; box-shadow: 0 0 20px rgba(22, 163, 74, 0.3);
         }
         .card-battery:hover .feature-icon {
-            color: #16A34A; /* Green icon */
-            transform: scale(1.2);
+            color: #16A34A; transform: scale(1.2);
         }
 
         /* 📢 CTA SECTION 📢 */
@@ -408,7 +397,7 @@
 
         .footer-logo {
             justify-content: center; color: white; margin-bottom: 20px;
-            font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 10px;
+            font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 12px;
         }
 
         .footer-links {
@@ -430,7 +419,7 @@
             .hero { flex-direction: column; text-align: center; padding-top: 40px; }
             .hero h1 { font-size: 2.8rem; }
             .hero-content { margin-bottom: 50px; }
-            .nav-links { display: none; } /* Hide text links for simplicity, keep toggle */
+            .nav-links { display: none; }
         }
 
         @media (max-width: 600px) {
@@ -444,7 +433,8 @@
 
     <nav>
         <a href="#" class="logo">
-            <i class="fas fa-map-marker-alt"></i> Nap Alarm
+            <img src="np.jpg" alt="Nap Alarm Logo" class="brand-logo-img"> 
+            Nap Alarm
         </a>
         <div class="nav-right">
             <div class="nav-links">
@@ -474,7 +464,7 @@
         </div>
         <div class="hero-visual">
             <div class="phone-mockup">
-                <i class="fas fa-bed mockup-icon"></i>
+                <img src="np.jpg" alt="Nap Alarm App" class="mockup-logo-img">
                 <h3 style="font-size: 24px; font-weight: 800;">Background</h3>
                 <h3 style="font-size: 24px; font-weight: 800; color: #8B5CF6;">Active</h3>
             </div>
@@ -551,14 +541,15 @@
 
     <footer>
         <div class="footer-logo">
-            <i class="fas fa-map-marker-alt"></i> Nap Alarm
+            <img src="np.jpg" alt="Nap Alarm Logo" class="brand-logo-img">
+            Nap Alarm
         </div>
         <p>&copy; 2026 Ritik Jain. All rights reserved.</p>
         
         <div class="footer-links">
             <a href="privacy_policy.html">Privacy Policy</a>
             <a href="mailto:support@napalarm.com">Support</a>
-            <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm">Google Play</a>
+            <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm">Google Play Store</a>
         </div>
         
         <a href="app-ads.txt" class="ads-txt-link"><i class="fas fa-shield-alt"></i> Ads Ownership (app-ads.txt)</a>
@@ -568,7 +559,6 @@
         const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
         const currentTheme = localStorage.getItem('theme');
 
-        // Check local storage for saved theme preference on load
         if (currentTheme) {
             document.documentElement.setAttribute('data-theme', currentTheme);
             if (currentTheme === 'dark') {
@@ -576,7 +566,6 @@
             }
         }
 
-        // Handle switching themes
         function switchTheme(e) {
             if (e.target.checked) {
                 document.documentElement.setAttribute('data-theme', 'dark');

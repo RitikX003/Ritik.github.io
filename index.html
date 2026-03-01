@@ -10,41 +10,72 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* 🎨 CSS THEME VARIABLES 🎨 */
         :root {
+            /* Light Theme (Defaults) */
             --primary: #4F46E5; /* Indigo */
             --primary-hover: #4338CA;
             --secondary: #8B5CF6; /* Purple */
-            --dark: #0F172A; /* Slate 900 */
+            
+            --bg-body: #F8FAFC; /* Slate 50 */
+            --bg-nav: #FFFFFF;
+            --bg-hero: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+            --bg-card: #FFFFFF;
+            --bg-icon-wrap: #EEF2FF;
+            --bg-steps: #FFFFFF;
+            --bg-footer: #020617; /* Slate 950 */
+
+            --text-main: #0F172A; /* Slate 900 */
             --text-gray: #475569; /* Slate 600 */
-            --light: #F8FAFC; /* Slate 50 */
-            --white: #FFFFFF;
+            --text-footer: #94A3B8;
+
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
+        /* Dark Theme Overrides */
+        [data-theme="dark"] {
+            --bg-body: #020617; /* Slate 950 */
+            --bg-nav: #0F172A; /* Slate 900 */
+            --bg-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            --bg-card: #1E293B; /* Slate 800 */
+            --bg-icon-wrap: #374151; /* Slate 700 */
+            --bg-steps: #0F172A;
+            
+            --text-main: #F1F5F9; /* Slate 100 */
+            --text-gray: #94A3B8; /* Slate 400 */
+
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 🛠️ GLOBAL STYLES 🛠️ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
-        /* Navbar */
+        /* 🧭 NAVBAR & THEME TOGGLE 🧭 */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: var(--white);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 15px 5%;
+            background: var(--bg-nav);
+            box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -57,6 +88,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .nav-links a {
@@ -64,34 +102,76 @@
             color: var(--text-gray);
             font-weight: 500;
             margin-left: 24px;
-            transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+        .nav-links a:hover { color: var(--primary); }
 
-        /* Hero Section */
+        /* Dark Mode Switch Styles */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+        }
+        .theme-switch {
+            display: inline-block;
+            height: 28px;
+            position: relative;
+            width: 50px;
+        }
+        .theme-switch input { display:none; }
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px;
+            font-size: 12px;
+        }
+        .slider::before {
+            background-color: white;
+            bottom: 3px;
+            content: "";
+            height: 22px;
+            left: 3px;
+            position: absolute;
+            transition: .4s;
+            width: 22px;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        input:checked + .slider { background-color: var(--primary); }
+        input:checked + .slider::before { transform: translateX(22px); }
+        .slider .fa-sun { color: #FBBF24; opacity: 1; transition: opacity 0.4s;}
+        .slider .fa-moon { color: #F1F5F9; opacity: 0; transition: opacity 0.4s;}
+        input:checked + .slider .fa-sun { opacity: 0; }
+        input:checked + .slider .fa-moon { opacity: 1; }
+
+
+        /* 🚀 HERO SECTION 🚀 */
         .hero {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 80px 5%;
-            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+            background: var(--bg-hero);
             min-height: 80vh;
         }
 
-        .hero-content {
-            flex: 1;
-            max-width: 600px;
-        }
+        .hero-content { flex: 1; max-width: 600px; }
 
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--text-main);
         }
 
         .hero h1 span {
@@ -116,8 +196,7 @@
             font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
         }
 
         .download-btn:hover {
@@ -126,23 +205,15 @@
             box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4);
         }
 
-        .download-btn i {
-            margin-right: 12px;
-            font-size: 1.4rem;
-        }
+        .download-btn i { margin-right: 12px; font-size: 1.4rem; }
 
-        .hero-visual {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
+        .hero-visual { flex: 1; display: flex; justify-content: center; }
 
-        /* Simulated Phone Mockup */
+        /* simulated Phone */
         .phone-mockup {
             width: 300px;
             height: 600px;
-            background: var(--dark);
+            background: #0F172A; /* Keep phone dark */
             border-radius: 40px;
             border: 12px solid #1E293B;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -156,20 +227,12 @@
         }
 
         .phone-mockup::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 120px;
-            height: 25px;
-            background: #1E293B;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
+            content: ''; position: absolute; top: 0; width: 120px; height: 25px;
+            background: #1E293B; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
         }
 
         .mockup-icon {
-            font-size: 80px;
-            color: var(--primary);
-            margin-bottom: 20px;
+            font-size: 80px; color: var(--primary); margin-bottom: 20px;
             filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.5));
             animation: float 3s ease-in-out infinite;
         }
@@ -180,18 +243,14 @@
             100% { transform: translateY(0px); }
         }
 
-        /* How it Works */
+        /* 🚶‍♂️ HOW IT WORKS 🚶‍♂️ */
         .steps-section {
             padding: 80px 5%;
-            background: var(--white);
+            background: var(--bg-steps);
             text-align: center;
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            font-weight: 800;
-        }
+        .section-title { font-size: 2.5rem; margin-bottom: 50px; font-weight: 800; color: var(--text-main); }
 
         .steps-container {
             display: flex;
@@ -200,40 +259,21 @@
             flex-wrap: wrap;
         }
 
-        .step-card {
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            padding: 30px 20px;
-        }
+        .step-card { flex: 1; min-width: 250px; max-width: 300px; padding: 30px 20px; }
 
         .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 0 auto 20px;
+            width: 50px; height: 50px; background: var(--primary); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px;
         }
 
-        .step-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-        }
+        .step-card h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--text-main); }
+        .step-card p { color: var(--text-gray); }
 
-        .step-card p {
-            color: var(--text-gray);
-        }
-
-        /* Features Section */
+        /* ✨ FEATURES GRID & ANIMATIONS ✨ */
         .features {
             padding: 80px 5%;
-            background: var(--light);
+            background: var(--bg-body);
             text-align: center;
         }
 
@@ -246,114 +286,151 @@
         }
 
         .feature-card {
-            background: var(--white);
+            background: var(--bg-card);
             padding: 40px 30px;
             border-radius: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
             text-align: left;
+            position: relative;
+            overflow: hidden;
         }
 
+        /* General Hover elevation for all cards */
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
         .feature-icon-wrapper {
             width: 60px;
             height: 60px;
-            background: #EEF2FF;
+            background: var(--bg-icon-wrap);
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        .feature-icon {
-            font-size: 1.8rem;
-            color: var(--primary);
+        .feature-icon { font-size: 1.8rem; color: var(--primary); }
+
+        .feature-title { font-weight: 700; font-size: 1.25rem; margin-bottom: 12px; color: var(--text-main); }
+        .feature-desc { color: var(--text-gray); }
+
+        /* 🟢 SPECIFIC CARD ANIMATIONS ON HOVER 🟢 */
+
+        /* 1. Smart ETA (Traffic Light Cycle) */
+        .card-eta:hover .feature-icon-wrapper {
+            animation: trafficLight 2.5s infinite;
+        }
+        @keyframes trafficLight {
+            0% { background: var(--bg-icon-wrap); box-shadow: none; }
+            20% { background: #DCFCE7; box-shadow: 0 0 15px #16A34A; } /* Green */
+            40% { background: #DCFCE7; }
+            50% { background: #FEF9C3; box-shadow: 0 0 15px #CA8A04; } /* Yellow */
+            70% { background: #FEF9C3; }
+            80% { background: #FEE2E2; box-shadow: 0 0 15px #DC2626; } /* Red */
+            100% { background: var(--bg-icon-wrap); box-shadow: none; }
+        }
+        .card-eta:hover .feature-icon { color: var(--text-main); }
+
+
+        /* 2. Voice Commands (Google Assistant Pulse) */
+        .card-voice .feature-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            background: var(--primary);
+            opacity: 0;
+            z-index: -1;
+        }
+        .card-voice:hover .feature-icon-wrapper::after {
+            animation: voicePulse 1.5s infinite;
+        }
+        @keyframes voicePulse {
+            0% { opacity: 0.6; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.6); }
+        }
+        .card-voice:hover .feature-icon { color: var(--primary); }
+
+
+        /* 3. Unstoppable Alerts (URGENT Shake/Vibrate) */
+        .card-alert:hover {
+            animation: vibrate 0.3s linear infinite;
+        }
+        @keyframes vibrate {
+            0% { transform: translate(0, 0) translateY(-5px); }
+            25% { transform: translate(2px, 2px) translateY(-5px); }
+            50% { transform: translate(0, 0) translateY(-5px); }
+            75% { transform: translate(-2px, -2px) translateY(-5px); }
+            100% { transform: translate(0, 0) translateY(-5px); }
+        }
+        .card-alert:hover .feature-icon { color: #DC2626; } /* Red icon on hover */
+
+
+        /* 4. Battery Optimized (Efficient Glow) */
+        .card-battery:hover .feature-icon-wrapper {
+            background: #DCFCE7; /* Light green wrap */
+            box-shadow: 0 0 20px rgba(22, 163, 74, 0.3);
+        }
+        .card-battery:hover .feature-icon {
+            color: #16A34A; /* Green icon */
+            transform: scale(1.2);
         }
 
-        .feature-title {
-            font-weight: 700;
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            color: var(--dark);
-        }
-
-        .feature-desc {
-            color: var(--text-gray);
-        }
-
-        /* CTA Section */
+        /* 📢 CTA SECTION 📢 */
         .cta-section {
-            background: var(--dark);
+            background: #0F172A;
             color: white;
             text-align: center;
             padding: 80px 5%;
         }
 
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
 
         .cta-section p {
-            font-size: 1.2rem;
-            color: #94A3B8;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.2rem; color: #94A3B8; margin-bottom: 40px;
+            max-width: 600px; margin-left: auto; margin-right: auto;
         }
 
-        /* Footer */
+        /* 🦶 FOOTER 🦶 */
         footer {
-            background-color: #020617; /* Slate 950 */
-            color: #64748B;
+            background-color: var(--bg-footer);
+            color: var(--text-footer);
             padding: 40px 5%;
             text-align: center;
             font-size: 0.95rem;
         }
 
+        .footer-logo {
+            justify-content: center; color: white; margin-bottom: 20px;
+            font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 10px;
+        }
+
         .footer-links {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
+            margin: 20px 0; display: flex; justify-content: center;
+            gap: 24px; flex-wrap: wrap;
         }
 
-        .footer-links a {
-            color: #94A3B8;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
+        .footer-links a { color: var(--text-footer); text-decoration: none; }
+        .footer-links a:hover { color: white; }
 
         .ads-txt-link {
-            display: inline-block;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            border: 1px solid #334155;
-            padding: 6px 12px;
-            border-radius: 6px;
+            display: inline-block; margin-top: 10px; font-size: 0.85rem;
+            border: 1px solid #334155; padding: 6px 12px; border-radius: 6px;
+            text-decoration: none; color: var(--text-footer);
         }
 
-        /* Mobile Adjustments */
+        /* 📱 MOBILE ADJUSTMENTS 📱 */
         @media (max-width: 900px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 40px;
-            }
+            .hero { flex-direction: column; text-align: center; padding-top: 40px; }
             .hero h1 { font-size: 2.8rem; }
             .hero-content { margin-bottom: 50px; }
-            .nav-links { display: none; } /* Hide on small screens for simplicity */
+            .nav-links { display: none; } /* Hide text links for simplicity, keep toggle */
         }
 
         @media (max-width: 600px) {
@@ -366,13 +443,23 @@
 <body>
 
     <nav>
-        <div class="logo">
+        <a href="#" class="logo">
             <i class="fas fa-map-marker-alt"></i> Nap Alarm
-        </div>
-        <div class="nav-links">
-            <a href="#how-it-works">How it Works</a>
-            <a href="#features">Features</a>
-            <a href="mailto:support@napalarm.com">Contact</a>
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#how-it-works">How it Works</a>
+                <a href="#features">Features</a>
+            </div>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </label>
+            </div>
         </div>
     </nav>
 
@@ -419,7 +506,7 @@
         <h2 class="section-title">Engineered for Commuters</h2>
         <div class="features-grid">
             
-            <div class="feature-card">
+            <div class="feature-card card-eta">
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-traffic-light feature-icon"></i>
                 </div>
@@ -427,7 +514,7 @@
                 <p class="feature-desc">Our default Time-Based mode adapts to live traffic and transit delays. We recalculate your arrival time so you wake up right on schedule.</p>
             </div>
 
-            <div class="feature-card">
+            <div class="feature-card card-voice">
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-microphone feature-icon"></i>
                 </div>
@@ -435,7 +522,7 @@
                 <p class="feature-desc">Hands full? Just say "Hey Google, set a Nap Alarm for Home" and Google Assistant will instantly configure your trip.</p>
             </div>
 
-            <div class="feature-card">
+            <div class="feature-card card-alert">
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-mobile-screen-button feature-icon"></i>
                 </div>
@@ -443,7 +530,7 @@
                 <p class="feature-desc">Built to bypass modern Android battery restrictions. Our alarm punches right through your lock screen to guarantee you wake up.</p>
             </div>
 
-            <div class="feature-card">
+            <div class="feature-card card-battery">
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-battery-half feature-icon"></i>
                 </div>
@@ -457,13 +544,13 @@
     <section class="cta-section">
         <h2>Ready for a stress-free commute?</h2>
         <p>Join the open beta today and turn your daily transit into an opportunity to rest.</p>
-        <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm" class="download-btn" style="background: white; color: var(--dark); box-shadow: none;">
+        <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm" class="download-btn" style="background: white; color: #0F172A; box-shadow: none;">
             <i class="fab fa-google-play" style="color: var(--primary);"></i> Download Now
         </a>
     </section>
 
     <footer>
-        <div class="logo" style="justify-content: center; color: white; margin-bottom: 20px;">
+        <div class="footer-logo">
             <i class="fas fa-map-marker-alt"></i> Nap Alarm
         </div>
         <p>&copy; 2026 Ritik Jain. All rights reserved.</p>
@@ -471,11 +558,37 @@
         <div class="footer-links">
             <a href="privacy_policy.html">Privacy Policy</a>
             <a href="mailto:support@napalarm.com">Support</a>
-            <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm">Google Play Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm">Google Play</a>
         </div>
         
         <a href="app-ads.txt" class="ads-txt-link"><i class="fas fa-shield-alt"></i> Ads Ownership (app-ads.txt)</a>
     </footer>
+
+    <script>
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+
+        // Check local storage for saved theme preference on load
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+            }
+        }
+
+        // Handle switching themes
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }    
+        }
+
+        toggleSwitch.addEventListener('change', switchTheme, false);
+    </script>
 
 </body>
 </html>

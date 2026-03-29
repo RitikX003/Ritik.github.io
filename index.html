@@ -6,7 +6,7 @@
     <title>Nap Alarm - Never Miss Your Stop</title>
     <meta name="description" content="Location-based alarm clock for commuters. Sleep peacefully on the bus or train, we will wake you up when you arrive.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -16,14 +16,15 @@
             --primary: #4F46E5; /* Indigo */
             --primary-hover: #4338CA;
             --secondary: #8B5CF6; /* Purple */
+            --accent-gold: #F59E0B; /* Premium Gold */
             
             --bg-body: #F8FAFC; /* Slate 50 */
-            --bg-nav: #FFFFFF;
+            --bg-nav: rgba(255, 255, 255, 0.9);
             --bg-hero: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
             --bg-card: #FFFFFF;
             --bg-icon-wrap: #EEF2FF;
             --bg-steps: #FFFFFF;
-            --bg-pro-section: #EEF2FF; /* Slight tint for Pro section */
+            --bg-pro-section: #EEF2FF; 
             --bg-footer: #020617; /* Slate 950 */
 
             --text-main: #0F172A; /* Slate 900 */
@@ -31,26 +32,26 @@
             --text-footer: #94A3B8;
 
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
             --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         /* Dark Theme Overrides */
         [data-theme="dark"] {
             --bg-body: #020617; /* Slate 950 */
-            --bg-nav: #0F172A; /* Slate 900 */
+            --bg-nav: rgba(15, 23, 42, 0.9); /* Slate 900 */
             --bg-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
             --bg-card: #1E293B; /* Slate 800 */
-            --bg-icon-wrap: #374151; /* Slate 700 */
+            --bg-icon-wrap: #334155; /* Slate 700 */
             --bg-steps: #0F172A;
-            --bg-pro-section: #0B1120; /* Darker tint for Pro section */
+            --bg-pro-section: #0B1120; 
             
-            --text-main: #F1F5F9; /* Slate 100 */
+            --text-main: #F8FAFC; /* Slate 50 */
             --text-gray: #94A3B8; /* Slate 400 */
 
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
         }
 
         /* 🛠️ GLOBAL STYLES 🛠️ */
@@ -58,7 +59,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
         }
 
         html { scroll-behavior: smooth; }
@@ -68,6 +69,7 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* 🧭 NAVBAR & THEME TOGGLE 🧭 */
@@ -77,6 +79,8 @@
             align-items: center;
             padding: 15px 5%;
             background: var(--bg-nav);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
@@ -84,9 +88,6 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 12px;
@@ -94,41 +95,88 @@
         }
 
         .brand-logo-img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%; 
+            width: 40px;
+            height: 40px;
+            border-radius: 10px; 
             object-fit: cover;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
+        }
+
+        .logo-text-stack {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        /* 🟢 MOTTO STYLES 🟢 */
+        .nav-motto-desktop {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            font-style: italic;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .nav-motto-desktop span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .nav-motto-mobile {
+            display: none; /* Hidden on desktop by default */
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-gray);
+            font-style: italic;
+            margin-top: 2px;
+        }
+        .nav-motto-mobile span {
+            color: var(--primary);
+            font-weight: 700;
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-gray);
-            font-weight: 500;
+            font-weight: 600;
             margin-left: 24px;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
         }
 
         .nav-links a:hover { color: var(--primary); }
 
         .theme-switch-wrapper { display: flex; align-items: center; }
-        .theme-switch { display: inline-block; height: 28px; position: relative; width: 50px; }
+        .theme-switch { display: inline-block; height: 30px; position: relative; width: 54px; }
         .theme-switch input { display:none; }
         .slider {
-            background-color: #ccc; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0;
+            background-color: var(--bg-icon-wrap); bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0;
             transition: .4s; border-radius: 34px; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5px; font-size: 12px;
+            padding: 0 6px; font-size: 12px; border: 1px solid rgba(148, 163, 184, 0.2);
         }
         .slider::before {
-            background-color: white; bottom: 3px; content: ""; height: 22px; left: 3px;
-            position: absolute; transition: .4s; width: 22px; border-radius: 50%; z-index: 2;
+            background-color: white; bottom: 3px; content: ""; height: 22px; left: 4px;
+            position: absolute; transition: .4s cubic-bezier(0.68, -0.55, 0.265, 1.55); width: 22px; border-radius: 50%; z-index: 2;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-        input:checked + .slider { background-color: var(--primary); }
+        input:checked + .slider { background-color: var(--primary); border-color: var(--primary); }
         input:checked + .slider::before { transform: translateX(22px); }
         .slider .fa-sun { color: #FBBF24; opacity: 1; transition: opacity 0.4s;}
         .slider .fa-moon { color: #F1F5F9; opacity: 0; transition: opacity 0.4s;}
@@ -138,64 +186,76 @@
         /* 🚀 HERO SECTION 🚀 */
         .hero {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 80px 5%; background: var(--bg-hero); min-height: 80vh;
+            padding: 80px 5%; background: var(--bg-hero); min-height: 85vh;
+            position: relative; overflow: hidden;
         }
 
-        .hero-content { flex: 1; max-width: 600px; }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: var(--text-main); }
-        .hero h1 span { background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 32px; }
+        .hero-content { flex: 1; max-width: 600px; position: relative; z-index: 2; }
+        .hero h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: var(--text-main); letter-spacing: -1px; }
+        .hero h1 span { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 40px; }
 
         .download-btn {
-            display: inline-flex; align-items: center; background-color: var(--primary); color: var(--white);
-            padding: 16px 32px; border-radius: 50px; font-size: 1.1rem; font-weight: 700; text-decoration: none; box-shadow: var(--shadow-lg);
+            display: inline-flex; align-items: center; background-color: var(--primary); color: white !important;
+            padding: 16px 36px; border-radius: 50px; font-size: 1.1rem; font-weight: 700; text-decoration: none; 
+            box-shadow: var(--shadow-lg); transition: all 0.3s ease;
         }
-        .download-btn:hover { background-color: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4); }
+        .download-btn:hover { background-color: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.5); }
         .download-btn i { margin-right: 12px; font-size: 1.4rem; }
 
-        .hero-visual { flex: 1; display: flex; justify-content: center; }
+        .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; z-index: 2; }
 
         .phone-mockup {
-            width: 300px; height: 600px; background: #0F172A; border-radius: 40px; border: 12px solid #1E293B;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); display: flex; flex-direction: column;
+            width: 320px; height: 640px; background: #0F172A; border-radius: 48px; border: 14px solid #1E293B;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column;
             align-items: center; justify-content: center; color: white; position: relative; overflow: hidden;
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #020617 100%);
         }
         .phone-mockup::before {
-            content: ''; position: absolute; top: 0; width: 120px; height: 25px;
-            background: #1E293B; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
+            content: ''; position: absolute; top: 0; width: 140px; height: 30px;
+            background: #1E293B; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; z-index: 10;
         }
-        .mockup-logo-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); animation: float 3s ease-in-out infinite; }
+        /* Dynamic map background effect for mockup */
+        .mockup-map-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.15;
+            background-image: radial-gradient(circle, var(--primary) 2px, transparent 2px);
+            background-size: 30px 30px; z-index: 1;
+        }
+        .mockup-logo-img { width: 120px; height: 120px; border-radius: 24px; object-fit: cover; margin-bottom: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); animation: float 4s ease-in-out infinite; z-index: 2; position: relative;}
 
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
         /* 🚶‍♂️ HOW IT WORKS 🚶‍♂️ */
-        .steps-section { padding: 80px 5%; background: var(--bg-steps); text-align: center; }
-        .section-title { font-size: 2.5rem; margin-bottom: 15px; font-weight: 800; color: var(--text-main); }
-        .section-subtitle { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .steps-section { padding: 100px 5%; background: var(--bg-steps); text-align: center; }
+        .section-title { font-size: 2.8rem; margin-bottom: 16px; font-weight: 800; color: var(--text-main); letter-spacing: -1px;}
+        .section-subtitle { font-size: 1.15rem; color: var(--text-gray); margin-bottom: 60px; max-width: 650px; margin-left: auto; margin-right: auto; }
 
         .steps-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-        .step-card { flex: 1; min-width: 250px; max-width: 300px; padding: 30px 20px; }
-        .step-number { width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px; }
-        .step-card h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--text-main); }
-        .step-card p { color: var(--text-gray); }
+        .step-card { flex: 1; min-width: 250px; max-width: 320px; padding: 40px 24px; border-radius: 24px; background: var(--bg-card); box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease;}
+        .step-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .step-number { width: 56px; height: 56px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 24px; box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3); }
+        .step-card h3 { font-size: 1.35rem; margin-bottom: 12px; color: var(--text-main); font-weight: 700;}
+        .step-card p { color: var(--text-gray); font-size: 1rem; line-height: 1.6;}
 
         /* ✨ FEATURES GRID ✨ */
-        .features { padding: 80px 5%; background: var(--bg-body); text-align: center; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .features { padding: 100px 5%; background: var(--bg-body); text-align: center; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; max-width: 1200px; margin: 0 auto; }
         
         .feature-card {
-            background: var(--bg-card); padding: 40px 30px; border-radius: 20px; box-shadow: var(--shadow-md);
-            text-align: left; position: relative; overflow: hidden;
+            background: var(--bg-card); padding: 40px 32px; border-radius: 24px; box-shadow: var(--shadow-md);
+            text-align: left; position: relative; overflow: hidden; border: 1px solid rgba(148, 163, 184, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .feature-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
 
         .feature-icon-wrapper {
-            width: 60px; height: 60px; background: var(--bg-icon-wrap); border-radius: 15px;
-            display: flex; align-items: center; justify-content: center; margin-bottom: 20px; position: relative; z-index: 1;
+            width: 64px; height: 64px; background: var(--bg-icon-wrap); border-radius: 16px;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 24px; position: relative; z-index: 1;
+            transition: all 0.3s ease;
         }
-        .feature-icon { font-size: 1.8rem; color: var(--primary); }
-        .feature-title { font-weight: 700; font-size: 1.25rem; margin-bottom: 12px; color: var(--text-main); }
-        .feature-desc { color: var(--text-gray); }
+        .feature-icon { font-size: 1.8rem; color: var(--primary); transition: all 0.3s ease;}
+        .feature-title { font-weight: 800; font-size: 1.3rem; margin-bottom: 12px; color: var(--text-main); }
+        .feature-desc { color: var(--text-gray); font-size: 1rem; line-height: 1.6;}
 
         /* General Features Animations */
         .card-eta:hover .feature-icon-wrapper { animation: trafficLight 2.5s infinite; }
@@ -211,22 +271,15 @@
         .card-eta:hover .feature-icon { color: var(--text-main); }
 
         .card-distance:hover .feature-icon { animation: pinBounce 0.6s ease-in-out infinite alternate; color: #EF4444; }
-        @keyframes pinBounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
-        }
+        @keyframes pinBounce { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
 
-        .card-voice .feature-icon-wrapper::after { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 15px; background: var(--primary); opacity: 0; z-index: -1; }
-        .card-voice:hover .feature-icon-wrapper::after { animation: voicePulse 1.5s infinite; }
-        @keyframes voicePulse { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 0; transform: scale(1.6); } }
-        .card-voice:hover .feature-icon { color: var(--primary); }
+        /* Anti-Theft Animation */
+        .card-theft:hover .feature-icon-wrapper { box-shadow: 0 0 20px rgba(79, 70, 229, 0.3); }
+        .card-theft:hover .feature-icon { animation: shieldPulse 1.5s infinite; color: var(--primary); }
+        @keyframes shieldPulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
 
         .card-audio:hover .feature-icon { animation: audioPulse 1s ease-in-out infinite; color: var(--secondary); }
-        @keyframes audioPulse {
-            0% { transform: scale(1); text-shadow: 0 0 0 rgba(139, 92, 246, 0); }
-            50% { transform: scale(1.15); text-shadow: 0 0 15px rgba(139, 92, 246, 0.6); }
-            100% { transform: scale(1); text-shadow: 0 0 0 rgba(139, 92, 246, 0); }
-        }
+        @keyframes audioPulse { 0% { transform: scale(1); text-shadow: 0 0 0 rgba(139, 92, 246, 0); } 50% { transform: scale(1.15); text-shadow: 0 0 15px rgba(139, 92, 246, 0.6); } 100% { transform: scale(1); text-shadow: 0 0 0 rgba(139, 92, 246, 0); } }
 
         .card-alert:hover { animation: vibrate 0.3s linear infinite; }
         @keyframes vibrate { 0% { transform: translate(0, 0) translateY(-5px); } 25% { transform: translate(2px, 2px) translateY(-5px); } 50% { transform: translate(0, 0) translateY(-5px); } 75% { transform: translate(-2px, -2px) translateY(-5px); } 100% { transform: translate(0, 0) translateY(-5px); } }
@@ -235,17 +288,17 @@
         .card-battery:hover .feature-icon-wrapper { background: #DCFCE7; box-shadow: 0 0 20px rgba(22, 163, 74, 0.3); }
         .card-battery:hover .feature-icon { color: #16A34A; transform: scale(1.2); }
 
-        /* 💎 PRO FEATURES SECTION (AD-SUPPORTED) 💎 */
-        .pro-features { padding: 80px 5%; background: var(--bg-pro-section); text-align: center; }
+        /* 💎 PRO FEATURES SECTION (HYBRID MONETIZATION) 💎 */
+        .pro-features { padding: 100px 5%; background: var(--bg-pro-section); text-align: center; }
         
         .pro-badge {
             position: absolute; top: 24px; right: 24px;
-            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color: white;
-            padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800;
-            letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(217, 119, 6, 0.3); text-transform: uppercase;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #D97706 100%); color: white;
+            padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 800;
+            letter-spacing: 0.5px; box-shadow: 0 4px 6px rgba(217, 119, 6, 0.2); text-transform: uppercase;
         }
 
-        .card-reminder:hover .feature-icon { animation: ringBell 0.5s ease-in-out infinite alternate; color: #F59E0B; }
+        .card-reminder:hover .feature-icon { animation: ringBell 0.5s ease-in-out infinite alternate; color: var(--accent-gold); }
         @keyframes ringBell { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
 
         .card-gentle:hover .feature-icon { animation: gentleFloat 2s ease-in-out infinite; color: #06B6D4; }
@@ -255,29 +308,41 @@
         @keyframes timeTravel { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
 
         /* 📢 CTA SECTION 📢 */
-        .cta-section { background: #0F172A; color: white; text-align: center; padding: 80px 5%; }
-        .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .cta-section p { font-size: 1.2rem; color: #94A3B8; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-section { background: #0F172A; color: white; text-align: center; padding: 100px 5%; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(79,70,229,0.1) 0%, rgba(15,23,42,1) 50%); z-index: 1; }
+        .cta-content { position: relative; z-index: 2; }
+        .cta-section h2 { font-size: 3rem; margin-bottom: 20px; font-weight: 800; letter-spacing: -1px; }
+        .cta-section p { font-size: 1.25rem; color: #94A3B8; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
         /* 🦶 FOOTER 🦶 */
-        footer { background-color: var(--bg-footer); color: var(--text-footer); padding: 40px 5%; text-align: center; font-size: 0.95rem; }
-        .footer-logo { justify-content: center; color: white; margin-bottom: 20px; font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 12px; }
-        .footer-links { margin: 20px 0; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-footer); text-decoration: none; }
+        footer { background-color: var(--bg-footer); color: var(--text-footer); padding: 50px 5% 30px; text-align: center; font-size: 0.95rem; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-logo { justify-content: center; color: white; margin-bottom: 24px; font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 12px; }
+        .footer-logo img { width: 32px; height: 32px; border-radius: 8px;}
+        .footer-links { margin: 24px 0; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-footer); text-decoration: none; font-weight: 500; transition: color 0.2s; }
         .footer-links a:hover { color: white; }
-        .ads-txt-link { display: inline-block; margin-top: 10px; font-size: 0.85rem; border: 1px solid #334155; padding: 6px 12px; border-radius: 6px; text-decoration: none; color: var(--text-footer); }
+        .ads-txt-link { display: inline-block; margin-top: 16px; font-size: 0.85rem; border: 1px solid #334155; padding: 8px 16px; border-radius: 8px; text-decoration: none; color: var(--text-footer); transition: all 0.2s;}
+        .ads-txt-link:hover { background: #1E293B; color: white; border-color: #475569;}
 
         /* 📱 MOBILE ADJUSTMENTS 📱 */
-        @media (max-width: 900px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 40px; }
-            .hero h1 { font-size: 2.8rem; }
-            .hero-content { margin-bottom: 50px; }
+        @media (max-width: 950px) {
+            /* 🟢 The Magic Swap! Hide desktop motto, show mobile motto */
+            .nav-motto-desktop { display: none; }
+            .nav-motto-mobile { display: block; }
             .nav-links { display: none; }
         }
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 60px; }
+            .hero h1 { font-size: 3.2rem; }
+            .hero-content { margin-bottom: 60px; }
+        }
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2.2rem; }
-            .section-title { font-size: 2rem; }
-            .phone-mockup { width: 260px; height: 520px; }
+            .hero h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2.2rem; }
+            .phone-mockup { width: 280px; height: 560px; }
+            /* Slightly shrink the logo text on very small screens to make room */
+            .logo-title { font-size: 1.35rem; }
+            .nav-motto-mobile { font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -286,8 +351,16 @@
     <nav>
         <a href="#" class="logo">
             <img src="np.jpg" alt="Nap Alarm Logo" class="brand-logo-img"> 
-            Nap Alarm
+            <div class="logo-text-stack">
+                <span class="logo-title">Nap Alarm</span>
+                <span class="nav-motto-mobile">Nap with <span>Confidence</span></span>
+            </div>
         </a>
+        
+        <div class="nav-motto-desktop">
+            Nap with <span>Confidence</span>
+        </div>
+
         <div class="nav-right">
             <div class="nav-links">
                 <a href="#how-it-works">How it Works</a>
@@ -317,31 +390,32 @@
         </div>
         <div class="hero-visual">
             <div class="phone-mockup">
+                <div class="mockup-map-bg"></div>
                 <img src="np.jpg" alt="Nap Alarm App" class="mockup-logo-img">
-                <h3 style="font-size: 24px; font-weight: 800;">Background</h3>
-                <h3 style="font-size: 24px; font-weight: 800; color: #8B5CF6;">Active</h3>
+                <h3 style="font-size: 26px; font-weight: 800; z-index: 2;">Monitoring</h3>
+                <h3 style="font-size: 26px; font-weight: 800; color: #8B5CF6; z-index: 2;">Route Active</h3>
             </div>
         </div>
     </header>
 
     <section id="how-it-works" class="steps-section">
         <h2 class="section-title">How it works</h2>
-        <div class="section-subtitle">Set up your commute alarm in 3 simple steps.</div>
+        <div class="section-subtitle">Set up your commute alarm in 3 simple steps and get back to sleeping.</div>
         <div class="steps-container">
             <div class="step-card">
                 <div class="step-number">1</div>
                 <h3>Set Destination</h3>
-                <p>Search for your train station, bus stop, or save your Home/Work for 1-tap access.</p>
+                <p>Search for your train station, bus stop, or save your Home/Work for instant 1-tap access.</p>
             </div>
             <div class="step-card">
                 <div class="step-number">2</div>
                 <h3>Choose a Buffer</h3>
-                <p>Want to wake up 5 minutes before arriving? Or 2 kilometers away? Set your preference.</p>
+                <p>Want to wake up 5 minutes before arriving? Or exactly 2 kilometers away? Set your preference.</p>
             </div>
             <div class="step-card">
                 <div class="step-number">3</div>
                 <h3>Go to Sleep</h3>
-                <p>Lock your phone and rest. We dynamically track your ETA and wake you up reliably.</p>
+                <p>Lock your phone and rest. We securely track your ETA in the background and wake you up reliably.</p>
             </div>
         </div>
     </section>
@@ -355,7 +429,7 @@
                     <i class="fas fa-traffic-light feature-icon"></i>
                 </div>
                 <h3 class="feature-title">Smart ETA Tracking</h3>
-                <p class="feature-desc">Our default Time-Based mode adapts to live traffic and transit delays. We recalculate your arrival time so you wake up right on schedule.</p>
+                <p class="feature-desc">Our Time-Based mode adapts to live traffic and transit delays. We continuously recalculate your arrival time so you wake up precisely on schedule.</p>
             </div>
 
             <div class="feature-card card-distance">
@@ -363,15 +437,15 @@
                     <i class="fas fa-map-location-dot feature-icon"></i>
                 </div>
                 <h3 class="feature-title">Distance-Based Alarms</h3>
-                <p class="feature-desc">Prefer predictable alerts? Switch to Distance Mode to trigger your alarm exactly 2 kilometers before reaching your destination.</p>
+                <p class="feature-desc">Prefer predictable alerts regardless of traffic? Switch to Distance Mode to trigger your alarm exactly 2 kilometers before reaching your destination.</p>
             </div>
 
-            <div class="feature-card card-voice">
+            <div class="feature-card card-theft">
                 <div class="feature-icon-wrapper">
-                    <i class="fas fa-microphone feature-icon"></i>
+                    <i class="fas fa-shield-halved feature-icon"></i>
                 </div>
-                <h3 class="feature-title">Voice Commands</h3>
-                <p class="feature-desc">Hands full? Just say "Hey Google, set a Nap Alarm for Home" and Google Assistant will instantly configure your trip.</p>
+                <h3 class="feature-title">Anti-Theft Protection</h3>
+                <p class="feature-desc">Sleep securely in public. Turn on Anti-Theft mode to trigger a loud, continuous alarm if someone attempts to move or snatch your phone while you rest.</p>
             </div>
 
             <div class="feature-card card-audio">
@@ -379,7 +453,7 @@
                     <i class="fas fa-headphones-simple feature-icon"></i>
                 </div>
                 <h3 class="feature-title">Smart Audio Routing</h3>
-                <p class="feature-desc">Wearing earphones? The alarm routes directly through them so you don't disturb others. No earphones? It plays loud and clear on the speaker.</p>
+                <p class="feature-desc">Wearing earphones? The alarm routes directly through them so you don't disturb other passengers. No earphones? It plays loud and clear on the speaker.</p>
             </div>
 
             <div class="feature-card card-alert">
@@ -387,7 +461,7 @@
                     <i class="fas fa-mobile-screen-button feature-icon"></i>
                 </div>
                 <h3 class="feature-title">Unstoppable Alerts</h3>
-                <p class="feature-desc">Built to bypass modern Android battery restrictions. Our alarm punches right through your lock screen to guarantee you wake up.</p>
+                <p class="feature-desc">Built to bypass modern Android Doze restrictions. Our alarm punches right through your lock screen and silence settings to guarantee you wake up.</p>
             </div>
 
             <div class="feature-card card-battery">
@@ -395,29 +469,29 @@
                     <i class="fas fa-battery-half feature-icon"></i>
                 </div>
                 <h3 class="feature-title">Battery Optimized</h3>
-                <p class="feature-desc">By syncing GPS pings with your current travel speed, we minimize battery drain so you have juice left when you arrive.</p>
+                <p class="feature-desc">By intelligently syncing GPS polling with your current travel speed and distance, we minimize battery drain so you have juice left when you arrive.</p>
             </div>
 
         </div>
     </section>
 
     <section id="pro-features" class="pro-features">
-        <h2 class="section-title">Premium tools. Zero cost.</h2>
-        <div class="section-subtitle">Unlock these powerful pro features permanently for a specific trip just by watching a quick, one-time rewarded ad. No subscriptions required!</div>
+        <h2 class="section-title">Play Your Way</h2>
+        <div class="section-subtitle">Unlock premium features using free Z-Coins earned by watching quick ads, or upgrade to <b>Lifetime Pro</b> for a permanent, ad-free experience!</div>
         
-        <div class="features-grid" style="margin-top: 40px;">
+        <div class="features-grid" style="margin-top: 50px;">
             
             <div class="feature-card card-reminder">
-                <div class="pro-badge"><i class="fas fa-play" style="font-size:0.6rem; margin-right:4px;"></i> Free via Ad</div>
+                <div class="pro-badge"><i class="fas fa-star" style="font-size:0.6rem; margin-right:4px;"></i> Premium</div>
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-bell feature-icon"></i>
                 </div>
                 <h3 class="feature-title">Smart Reminders</h3>
-                <p class="feature-desc">Never forget to set your alarm again. Get an intelligent prompt to activate Nap Alarm when you leave a saved location like the office.</p>
+                <p class="feature-desc">Never forget to set your alarm again. Get an intelligent prompt to activate Nap Alarm the moment you leave a saved location like the office.</p>
             </div>
 
             <div class="feature-card card-gentle">
-                <div class="pro-badge"><i class="fas fa-play" style="font-size:0.6rem; margin-right:4px;"></i> Free via Ad</div>
+                <div class="pro-badge"><i class="fas fa-star" style="font-size:0.6rem; margin-right:4px;"></i> Premium</div>
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-feather-pointed feature-icon"></i>
                 </div>
@@ -426,7 +500,7 @@
             </div>
 
             <div class="feature-card card-history">
-                <div class="pro-badge"><i class="fas fa-play" style="font-size:0.6rem; margin-right:4px;"></i> Free via Ad</div>
+                <div class="pro-badge"><i class="fas fa-star" style="font-size:0.6rem; margin-right:4px;"></i> Premium</div>
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-clock-rotate-left feature-icon"></i>
                 </div>
@@ -438,16 +512,18 @@
     </section>
 
     <section class="cta-section">
-        <h2>Ready for a stress-free commute?</h2>
-        <p>Join the Nap Alarm today and turn your daily transit into an opportunity to rest.</p>
-        <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm" class="download-btn" style="background: white; color: #0F172A; box-shadow: none;">
-            <i class="fab fa-google-play" style="color: var(--primary);"></i> Download Now
-        </a>
+        <div class="cta-content">
+            <h2>Ready for a stress-free commute?</h2>
+            <p>Join Nap Alarm today and turn your daily transit into an opportunity to rest securely.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm" class="download-btn" style="background: white; color: #0F172A !important; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+                <i class="fab fa-google-play" style="color: var(--primary);"></i> Download Now
+            </a>
+        </div>
     </section>
 
     <footer>
         <div class="footer-logo">
-            <img src="np.jpg" alt="Nap Alarm Logo" class="brand-logo-img">
+            <img src="np.jpg" alt="Nap Alarm Logo">
             Nap Alarm
         </div>
         <p>&copy; 2026 Ritik Jain. All rights reserved.</p>
@@ -458,7 +534,7 @@
             <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm">Google Play Store</a>
         </div>
         
-        <a href="app-ads.txt" class="ads-txt-link"><i class="fas fa-shield-alt"></i> Ads Ownership (app-ads.txt)</a>
+        <a href="app-ads.txt" class="ads-txt-link"><i class="fas fa-shield-alt" style="margin-right: 6px;"></i> Ads Ownership (app-ads.txt)</a>
     </footer>
 
     <script>

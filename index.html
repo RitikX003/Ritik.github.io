@@ -97,7 +97,7 @@
         .brand-logo-img {
             width: 40px;
             height: 40px;
-            border-radius: 10px; 
+            border-radius: 50%; /* 🟢 Changed to 50% for a perfect circle */
             object-fit: cover;
             box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
         }
@@ -134,7 +134,7 @@
         }
 
         .nav-motto-mobile {
-            display: none; /* Hidden on desktop by default */
+            display: none;
             font-size: 0.8rem;
             font-weight: 500;
             color: var(--text-gray);
@@ -221,7 +221,12 @@
             background-image: radial-gradient(circle, var(--primary) 2px, transparent 2px);
             background-size: 30px 30px; z-index: 1;
         }
-        .mockup-logo-img { width: 120px; height: 120px; border-radius: 24px; object-fit: cover; margin-bottom: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); animation: float 4s ease-in-out infinite; z-index: 2; position: relative;}
+        
+        .mockup-logo-img { 
+            width: 120px; height: 120px; 
+            border-radius: 50%; /* 🟢 Changed to 50% for a perfect circle */
+            object-fit: cover; margin-bottom: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); animation: float 4s ease-in-out infinite; z-index: 2; position: relative;
+        }
 
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
@@ -317,7 +322,12 @@
         /* 🦶 FOOTER 🦶 */
         footer { background-color: var(--bg-footer); color: var(--text-footer); padding: 50px 5% 30px; text-align: center; font-size: 0.95rem; border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-logo { justify-content: center; color: white; margin-bottom: 24px; font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 12px; }
-        .footer-logo img { width: 32px; height: 32px; border-radius: 8px;}
+        
+        .footer-logo img { 
+            width: 32px; height: 32px; 
+            border-radius: 50%; /* 🟢 Changed to 50% for a perfect circle */
+        }
+        
         .footer-links { margin: 24px 0; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
         .footer-links a { color: var(--text-footer); text-decoration: none; font-weight: 500; transition: color 0.2s; }
         .footer-links a:hover { color: white; }
@@ -326,7 +336,6 @@
 
         /* 📱 MOBILE ADJUSTMENTS 📱 */
         @media (max-width: 950px) {
-            /* 🟢 The Magic Swap! Hide desktop motto, show mobile motto */
             .nav-motto-desktop { display: none; }
             .nav-motto-mobile { display: block; }
             .nav-links { display: none; }
@@ -340,7 +349,6 @@
             .hero h1 { font-size: 2.5rem; }
             .section-title { font-size: 2.2rem; }
             .phone-mockup { width: 280px; height: 560px; }
-            /* Slightly shrink the logo text on very small screens to make room */
             .logo-title { font-size: 1.35rem; }
             .nav-motto-mobile { font-size: 0.75rem; }
         }

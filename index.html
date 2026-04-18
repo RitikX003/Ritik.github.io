@@ -17,6 +17,7 @@
             --primary-hover: #4338CA;
             --secondary: #8B5CF6; /* Purple */
             --accent-gold: #F59E0B; /* Premium Gold */
+            --accent-sos: #EF4444; /* Red for SOS */
             
             --bg-body: #F8FAFC; /* Slate 50 */
             --bg-nav: rgba(255, 255, 255, 0.9);
@@ -97,7 +98,7 @@
         .brand-logo-img {
             width: 40px;
             height: 40px;
-            border-radius: 50%; /* 🟢 Changed to 50% for a perfect circle */
+            border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
         }
@@ -116,7 +117,6 @@
             line-height: 1.1;
         }
 
-        /* 🟢 MOTTO STYLES 🟢 */
         .nav-motto-desktop {
             position: absolute;
             left: 50%;
@@ -141,16 +141,9 @@
             font-style: italic;
             margin-top: 2px;
         }
-        .nav-motto-mobile span {
-            color: var(--primary);
-            font-weight: 700;
-        }
+        .nav-motto-mobile span { color: var(--primary); font-weight: 700; }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
 
         .nav-links a {
             text-decoration: none;
@@ -215,7 +208,6 @@
             content: ''; position: absolute; top: 0; width: 140px; height: 30px;
             background: #1E293B; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; z-index: 10;
         }
-        /* Dynamic map background effect for mockup */
         .mockup-map-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.15;
             background-image: radial-gradient(circle, var(--primary) 2px, transparent 2px);
@@ -224,11 +216,110 @@
         
         .mockup-logo-img { 
             width: 120px; height: 120px; 
-            border-radius: 50%; /* 🟢 Changed to 50% for a perfect circle */
-            object-fit: cover; margin-bottom: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); animation: float 4s ease-in-out infinite; z-index: 2; position: relative;
+            border-radius: 50%; object-fit: cover; margin-bottom: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); animation: float 4s ease-in-out infinite; z-index: 2; position: relative;
         }
 
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+
+        /* 🚨 THE SPOTLIGHT USP SECTION (TRIP BUDDY & SOS) 🚨 */
+        .usp-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); /* Always Dark & Striking */
+            padding: 100px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle background glow */
+        .usp-section::before {
+            content: ''; position: absolute; top: 50%; left: 75%; transform: translate(-50%, -50%);
+            width: 600px; height: 600px; background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, transparent 70%); z-index: 1;
+        }
+
+        .usp-content { flex: 1; max-width: 550px; z-index: 2; }
+        
+        .new-badge {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.15);
+            color: #FDA4AF;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            100% { box-shadow: 0 0 15px 0 rgba(239, 68, 68, 0.1); }
+        }
+
+        .usp-content h2 { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+        .usp-content h2 span { color: var(--accent-sos); }
+        .usp-content p { font-size: 1.2rem; color: #94A3B8; margin-bottom: 30px; line-height: 1.7; }
+        
+        .usp-feature-list { list-style: none; margin-bottom: 40px; }
+        .usp-feature-list li { display: flex; align-items: center; margin-bottom: 16px; font-size: 1.1rem; color: #F8FAFC; }
+        .usp-feature-list i { color: var(--primary); font-size: 1.3rem; margin-right: 16px; background: rgba(79, 70, 229, 0.2); padding: 10px; border-radius: 12px; width: 44px; text-align: center; }
+
+        .usp-visual { flex: 1; display: flex; justify-content: center; align-items: center; z-index: 2; position: relative; }
+
+        /* The SOS Radar Animation */
+        .radar-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .radar-ring {
+            position: absolute;
+            width: 80px; height: 80px;
+            background: var(--accent-sos);
+            border-radius: 50%;
+            opacity: 0;
+            animation: radarPulse 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        .radar-ring.ring-2 { animation-delay: 1s; }
+        .radar-ring.ring-3 { animation-delay: 2s; }
+
+        @keyframes radarPulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+
+        /* 🟢 Redesigned to look like a passive shield/heartbeat monitor, not a clickable button */
+        .sos-monitor-mockup {
+            width: 100px; height: 100px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            position: relative;
+            border: 4px solid #334155;
+        }
+
+        .sos-monitor-mockup i { font-size: 2.5rem; color: var(--accent-sos); animation: heartbeat 1.5s infinite; }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
 
         /* 🚶‍♂️ HOW IT WORKS 🚶‍♂️ */
         .steps-section { padding: 100px 5%; background: var(--bg-steps); text-align: center; }
@@ -287,7 +378,6 @@
         @keyframes audioPulse { 0% { transform: scale(1); text-shadow: 0 0 0 rgba(139, 92, 246, 0); } 50% { transform: scale(1.15); text-shadow: 0 0 15px rgba(139, 92, 246, 0.6); } 100% { transform: scale(1); text-shadow: 0 0 0 rgba(139, 92, 246, 0); } }
 
         .card-alert:hover { animation: vibrate 0.3s linear infinite; }
-        @keyframes vibrate { 0% { transform: translate(0, 0) translateY(-5px); } 25% { transform: translate(2px, 2px) translateY(-5px); } 50% { transform: translate(0, 0) translateY(-5px); } 75% { transform: translate(-2px, -2px) translateY(-5px); } 100% { transform: translate(0, 0) translateY(-5px); } }
         .card-alert:hover .feature-icon { color: #DC2626; }
 
         .card-battery:hover .feature-icon-wrapper { background: #DCFCE7; box-shadow: 0 0 20px rgba(22, 163, 74, 0.3); }
@@ -325,7 +415,7 @@
         
         .footer-logo img { 
             width: 32px; height: 32px; 
-            border-radius: 50%; /* 🟢 Changed to 50% for a perfect circle */
+            border-radius: 50%;
         }
         
         .footer-links { margin: 24px 0; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
@@ -339,6 +429,9 @@
             .nav-motto-desktop { display: none; }
             .nav-motto-mobile { display: block; }
             .nav-links { display: none; }
+            .usp-section { flex-direction: column; text-align: center; padding: 80px 5%; }
+            .usp-feature-list { display: inline-block; text-align: left; }
+            .usp-section::before { left: 50%; top: 80%; }
         }
         @media (max-width: 900px) {
             .hero { flex-direction: column; text-align: center; padding-top: 60px; }
@@ -351,6 +444,7 @@
             .phone-mockup { width: 280px; height: 560px; }
             .logo-title { font-size: 1.35rem; }
             .nav-motto-mobile { font-size: 0.75rem; }
+            .usp-content h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -405,6 +499,30 @@
             </div>
         </div>
     </header>
+
+    <section class="usp-section">
+        <div class="usp-content">
+            <div class="new-badge">New Release</div>
+            <h2>Meet <span>Trip Buddy</span>. Your personal commute guardian.</h2>
+            <p>Don't just sleep comfortably—sleep safely. We monitor your alarm response in the background and only alert your trusted contacts if something goes wrong.</p>
+            
+            <ul class="usp-feature-list">
+                <li><i class="fas fa-bell-slash"></i> Auto-SOS if you are unresponsive to the alarm</li>
+                <li><i class="fas fa-lock"></i> Your location stays 100% private until an emergency</li>
+                <li><i class="fas fa-satellite-dish"></i> Live Cloud Tracking for your Buddy during SOS</li>
+            </ul>
+        </div>
+        <div class="usp-visual">
+            <div class="radar-container">
+                <div class="radar-ring ring-1"></div>
+                <div class="radar-ring ring-2"></div>
+                <div class="radar-ring ring-3"></div>
+                <div class="sos-monitor-mockup">
+                    <i class="fas fa-heart-pulse"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="how-it-works" class="steps-section">
         <h2 class="section-title">How it works</h2>
@@ -538,7 +656,7 @@
         
         <div class="footer-links">
             <a href="privacy_policy.html">Privacy Policy</a>
-            <a href="mailto:ritikjain0808@gmail.com">Support</a>
+            <a href="mailto:support.napalarm@gmail.com">Support</a>
             <a href="https://play.google.com/store/apps/details?id=com.ritik.napalarm">Google Play Store</a>
         </div>
         

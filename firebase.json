@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "ritik-jain-dev",
     "public": ".",
     "ignore": [
       "firebase.json",

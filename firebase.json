@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "ritik-jain-dev",
+    "site": "nap-alarm",
     "public": ".",
     "ignore": [
       "firebase.json",
